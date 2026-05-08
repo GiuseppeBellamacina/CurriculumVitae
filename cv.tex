@@ -1,0 +1,138 @@
+% ============================================================================
+%  Giuseppe Bellamacina — CV
+%  Harvard-style template | Compiled with pdfLaTeX or XeLaTeX
+% ============================================================================
+\documentclass[10pt,letterpaper]{article}
+
+% --- Geometry ---------------------------------------------------------------
+\usepackage[top=0.35in, bottom=0.35in, left=0.5in, right=0.5in]{geometry}
+
+% --- Fonts & Typography -----------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}          % Palatino — classic Harvard serif
+\usepackage{microtype}         % Improved kerning and protrusion
+
+% --- Packages ---------------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
+
+% --- Page Style -------------------------------------------------------------
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{0}
+
+% --- Section Formatting (Harvard: small caps + rule) ------------------------
+\titleformat{\section}
+  {\large\bfseries\scshape}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+% --- List Formatting --------------------------------------------------------
+\setlist[itemize]{leftmargin=1.2em, nosep, topsep=1pt, itemsep=1pt, parsep=0pt}
+
+% ============================================================================
+\begin{document}
+
+% ===========================================================================
+%  HEADER
+% ===========================================================================
+\begin{center}
+  {\LARGE\textbf{Giuseppe Bellamacina}} \\[2pt]
+  \href{mailto:bellamacina50@gmail.com}{bellamacina50@gmail.com}
+  \;\textbar\; +39\,349\,679\,0342
+  \;\textbar\; Catania, Italy \\[1pt]
+  \href{https://giuseppebellamacina.com}{giuseppebellamacina.com}
+  \;\textbar\; \href{https://www.linkedin.com/in/giuseppe-bellamacina}{LinkedIn}
+  \;\textbar\; \href{https://github.com/GiuseppeBellamacina}{GitHub}
+\end{center}
+
+% ===========================================================================
+%  SUMMARY
+% ===========================================================================
+\section{Summary}
+AI Engineer building LLM-based systems, multi-agent architectures, and RAG pipelines for production deployment in regulated environments (healthcare, military). Skilled in model adaptation through fine-tuning, reinforcement learning, and knowledge distillation.
+
+% ===========================================================================
+%  TECHNICAL SKILLS
+% ===========================================================================
+\section{Technical Skills}
+\small
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{@{} >{\bfseries}l @{\hspace{8pt}} X @{}}
+Languages        & Python, C, C++, SQL, Cypher, SPARQL, Bash, JavaScript, TypeScript \\
+LLM / Agent      & LangChain, LangGraph, LangSmith, HuggingFace TRL, vLLM, Unsloth, Ollama \\
+RAG \& Search    & ChromaDB, Weaviate, FAISS, semantic search, reranking \\
+Databases        & Neo4j, PostgreSQL, MySQL, Redis, SQLite \\
+APIs \& Backend  & FastAPI, Flask, REST API design, SDK integration \\
+DevOps           & Docker, GitHub Actions, Slurm (HPC cluster) \\
+Cloud \& Infra   & AWS, multi-GPU on-premise clusters (H100, vLLM), Vercel, Render \\
+ML Frameworks    & PyTorch, TensorFlow, scikit-learn, Pandas, Weights \& Biases \\
+Model Adaptation & Fine-tuning, GRPO/RL, LoRA, knowledge distillation, domain adaptation \\
+\end{tabularx}
+\renewcommand{\arraystretch}{1.0}
+\normalsize
+
+% ===========================================================================
+%  EXPERIENCE
+% ===========================================================================
+\section{Experience}
+
+\textbf{AI Software Engineer} \hfill Sep 2025 --- Present \\
+\textit{RICCA IT}
+\begin{itemize}
+  \item Architected and deployed a multi-agent system (~10 specialized agents, LangChain, LangGraph) for ASP, serving public healthcare organizations across southern Italy---regulated, high-stakes environment
+  \item Engineered end-to-end RAG pipelines over 4M+ records with LLM-generated tag embeddings for vector search, achieving sub-second retrieval on large-scale unstructured data
+  \item Constructed and exposed AI modules via REST APIs (FastAPI); containerized with Docker and streamlined CI/CD via GitHub Actions
+\end{itemize}
+
+\vspace{3pt}
+
+\textbf{AI/ML Engineer} \hfill Jun 2023 --- Jul 2025 \\
+\textit{IntelliSync}
+\begin{itemize}
+  \item Devised agentic pipelines translating natural language into executable queries across SQL, Neo4j (Cypher), SPARQL, and vector search backends using LangGraph
+  \item Implemented and deployed RAG architectures for the Italian Air Force Academy---mission-critical, security-sensitive context, serving ~1,000 cadets annually
+  \item Produced anomaly detection (85\% accuracy) and energy forecasting models across 30+ wind farms (Europe, Middle East, North Africa) for Yokogawa-integrated products
+\end{itemize}
+
+% ===========================================================================
+%  SELECTED PROJECTS
+% ===========================================================================
+\section{Selected Projects}
+
+\textbf{Guardian}---\textit{Hackathon Winner, NeoData Hackatania 2.0 (Nov 2024)} \\
+Multimodal AI assistant for law enforcement: 4-agent system with GraphRAG over a 28M-node Neo4j graph. Accepts image inputs (e.g.\ license plates) to correlate identities and assess risk in real time. Constructed with LangChain and LangGraph.
+
+\vspace{2pt}
+
+\textbf{GRPO Strict JSON Generation} \\
+Adapted 5 LLMs (135M--2B params) via GRPO with RL-based reward system, LoRA, 4-bit NF4 quantization. Achieved 87--99\% Pass@1. Dockerized, cluster-ready (Slurm).
+
+\vspace{2pt}
+
+\textbf{Videogame Semantic Search} \\
+Natural language-to-SPARQL translation via LLM over OWL\,2 ontology for structured knowledge graph querying.
+
+% ===========================================================================
+%  EDUCATION
+% ===========================================================================
+\section{Education}
+
+\textbf{M.Sc.\ Machine Learning and Artificial Intelligence} \hfill 2025 --- Present \\
+Universit\`{a} degli Studi di Catania
+
+\vspace{3pt}
+
+\textbf{B.Sc.\ Computer Science}---110/110 cum Laude \hfill 2021 --- 2024 \\
+Universit\`{a} degli Studi di Catania \;\textbar\; Specialization in Data Elaboration and Applications
+
+% ===========================================================================
+%  CERTIFICATIONS
+% ===========================================================================
+\section{Certifications}
+\small
+\textbf{LangChain:} Deep Agents, Deep Research, Ambient Agents, Introduction to LangGraph, LangSmith (2025) \\
+\textbf{Anthropic:} Claude Code in Action, MCP Advanced Topics, Introduction to MCP (2025)
+
+\end{document}

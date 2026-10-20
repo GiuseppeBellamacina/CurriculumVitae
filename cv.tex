@@ -1,138 +1,128 @@
 % ============================================================================
 %  Giuseppe Bellamacina — CV
-%  Harvard-style template | Compiled with pdfLaTeX or XeLaTeX
+%  Single column, selectable text, contacts and URLs in the body: ATS-safe.
+%  Compile: pdflatex cv.tex   (the portfolio downloads cv.pdf from main)
 % ============================================================================
-\documentclass[10pt,letterpaper]{article}
+\documentclass[10pt,a4paper]{article}
 
-% --- Geometry ---------------------------------------------------------------
-\usepackage[top=0.35in, bottom=0.35in, left=0.5in, right=0.5in]{geometry}
-
-% --- Fonts & Typography -----------------------------------------------------
+\usepackage[top=0.42in, bottom=0.35in, left=0.6in, right=0.6in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{mathpazo}          % Palatino — classic Harvard serif
-\usepackage{microtype}         % Improved kerning and protrusion
-
-% --- Packages ---------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{plex-sans}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
 
-% --- Page Style -------------------------------------------------------------
+% --- Palette ----------------------------------------------------------------
+\definecolor{ink}{HTML}{1B2330}
+\definecolor{muted}{HTML}{5A6475}
+\definecolor{rule}{HTML}{C9D2DE}
+\definecolor{cobalt}{HTML}{1F4FA8}   % Caltagirone majolica blue
+\definecolor{mark}{HTML}{DCE7FA}     % highlighter (solid fill, no transparency)
+\color{ink}
+
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setcounter{secnumdepth}{0}
 
-% --- Section Formatting (Harvard: small caps + rule) ------------------------
-\titleformat{\section}
-  {\large\bfseries\scshape}{}{0pt}{}[\titlerule]
-\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titleformat{\section}{\color{cobalt}\large\bfseries}{}{0pt}{}[\vspace{1pt}{\color{rule}\titlerule[0.7pt]}]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
 
-% --- List Formatting --------------------------------------------------------
-\setlist[itemize]{leftmargin=1.2em, nosep, topsep=1pt, itemsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, nosep, topsep=2pt, itemsep=2.5pt, parsep=0pt,
+  label={\color{cobalt}\rule[0.3ex]{0.75ex}{0.75ex}}}
+
+% --- Macros -----------------------------------------------------------------
+% Key figures, pre-highlighted for the 6-second scan
+\newcommand{\kpi}[1]{{\setlength{\fboxsep}{1.2pt}\colorbox{mark}{\textbf{#1}}}}
+% Supporting tech in parentheses, de-emphasized
+\newcommand{\tech}[1]{{\color{muted}(#1)}}
+% \role{title}{company}{dates}
+\newcommand{\role}[3]{{\large\textbf{#1}} {\color{muted}at} {\fontsize{11}{13}\selectfont\textbf{#2}} \hfill {\color{muted}#3}\par}
+% Project type chips: research (outlined blue), award (filled), personal (grey)
+\newcommand{\chip}[2]{{\setlength{\fboxsep}{1.4pt}\fcolorbox{#1}{white}{\footnotesize\color{#1}\textbf{#2}}}}
+\newcommand{\award}[1]{{\setlength{\fboxsep}{1.4pt}\colorbox{cobalt}{\footnotesize\color{white}\textbf{#1}}}}
+% \project{title}{chip}{description}
+\newcommand{\project}[3]{\textbf{#1}\enspace #2 \par\vspace{1.5pt} #3 \par\vspace{6pt}}
+\newcommand{\sep}{\enspace{\color{rule}|}\enspace}
 
 % ============================================================================
 \begin{document}
 
-% ===========================================================================
-%  HEADER
-% ===========================================================================
-\begin{center}
-  {\LARGE\textbf{Giuseppe Cosimo Alfio Bellamacina}} \\[2pt]
-  \href{mailto:bellamacina50@gmail.com}{bellamacina50@gmail.com}
-  \;\textbar\; +39\,349\,679\,0342
-  \;\textbar\; Catania, Italy \\[1pt]
-  \href{https://giuseppebellamacina.com}{giuseppebellamacina.com}
-  \;\textbar\; \href{https://www.linkedin.com/in/giuseppe-bellamacina}{LinkedIn}
-  \;\textbar\; \href{https://github.com/GiuseppeBellamacina}{GitHub}
-\end{center}
+{\fontsize{24}{28}\selectfont {\color{muted}\mdseries Giuseppe Cosimo Alfio} \textbf{Bellamacina}} \par\vspace{5pt}
+{\large\color{cobalt}\textbf{AI/ML Engineer for LLM agents, RAG and RL fine-tuning, 3+ years in production}} \par\vspace{5pt}
+{\color{muted}
+\href{mailto:bellamacina50@gmail.com}{bellamacina50@gmail.com} \sep +39\,349\,679\,0342 \sep Catania, Italy \\[1pt]
+\href{https://giuseppebellamacina.com}{giuseppebellamacina.com} \sep
+\href{https://www.linkedin.com/in/giuseppe-bellamacina}{linkedin.com/in/giuseppe-bellamacina} \sep
+\href{https://github.com/GiuseppeBellamacina}{github.com/GiuseppeBellamacina}}
+\par\vspace{6pt}
+{\color{cobalt}\rule{\linewidth}{1.8pt}}
 
-% ===========================================================================
-%  SUMMARY
 % ===========================================================================
 \section{Summary}
-AI Engineer building LLM-based systems, multi-agent architectures, and RAG pipelines for production deployment in regulated environments (healthcare, military). Skilled in model adaptation through fine-tuning, reinforcement learning, and knowledge distillation.
+AI/ML Engineer with \kpi{3+ years} shipping LLM systems to production in regulated sectors: \textbf{public healthcare} and \textbf{military} (Italian Air Force Academy). Focused on multi-agent architectures, RAG at scale and model adaptation (fine-tuning, GRPO/RL, distillation). M.Sc.\ student in Machine Learning \& AI.
 
-% ===========================================================================
-%  TECHNICAL SKILLS
-% ===========================================================================
-\section{Technical Skills}
-\small
-\renewcommand{\arraystretch}{1.05}
-\begin{tabularx}{\textwidth}{@{} >{\bfseries}l @{\hspace{8pt}} X @{}}
-Languages        & Python, C, C++, SQL, Cypher, SPARQL, Bash, JavaScript, TypeScript \\
-LLM / Agent      & LangChain, LangGraph, LangSmith, HuggingFace, vLLM, Unsloth, Ollama \\
-RAG \& Search    & ChromaDB, Weaviate, FAISS, semantic search, reranking \\
-Databases        & Neo4j, PostgreSQL, MySQL, Redis, SQLite \\
-APIs \& Backend  & FastAPI, Flask, REST API design, SDK integration \\
-DevOps           & Docker, GitHub Actions, Slurm (HPC cluster) \\
-Cloud \& Infra   & AWS, multi-GPU on-premise clusters (H100, vLLM), Vercel, Render \\
-ML Frameworks    & PyTorch, TensorFlow, scikit-learn, Pandas, Weights \& Biases \\
-Model Adaptation & Fine-tuning, GRPO/RL, LoRA, knowledge distillation, domain adaptation \\
-\end{tabularx}
-\renewcommand{\arraystretch}{1.0}
-\normalsize
-
-% ===========================================================================
-%  EXPERIENCE
 % ===========================================================================
 \section{Experience}
 
-\textbf{AI Software Engineer} \hfill Sep 2025 -- Present \\
-\textit{RICCA IT}
+\role{AI Software Engineer}{RICCA IT}{Sep 2025 -- Present}
 \begin{itemize}
-  \item Architected and deployed a multi-agent system (~10 specialized agents, LangChain, LangGraph) for ASP, serving public healthcare organizations across southern Italy, regulated, high-stakes environment
-  \item Engineered end-to-end RAG pipelines over 4M+ records with LLM-generated tag embeddings for vector search, achieving sub-second retrieval on large-scale unstructured data
-  \item Constructed and exposed AI modules via REST APIs (FastAPI); containerized with Docker and streamlined CI/CD via GitHub Actions
+  \item Architected and deployed a \kpi{multi-agent system ($\sim$10 agents)} serving \textbf{public healthcare organizations across southern Italy} \tech{LangChain, LangGraph}
+  \item Built RAG pipelines over \kpi{4M+ records} with \textbf{sub-second retrieval} \tech{LLM-generated tag embeddings, vector search}
+  \item Shipped AI modules as REST APIs \tech{FastAPI}, containerized with Docker, CI/CD on GitHub Actions
 \end{itemize}
 
-\vspace{3pt}
+\vspace{7pt}
 
-\textbf{AI/ML Engineer} \hfill Jun 2023 -- Jul 2025 \\
-\textit{IntelliSync}
+\role{AI/ML Engineer}{IntelliSync}{Jun 2023 -- Jul 2025}
 \begin{itemize}
-  \item Devised agentic pipelines translating natural language into executable queries across SQL, Neo4j (Cypher), SPARQL, and vector search backends using LangGraph
-  \item Implemented and deployed RAG architectures for the Italian Air Force Academy, mission-critical, security-sensitive context, serving ~1,000 cadets annually
-  \item Produced anomaly detection (85\% accuracy) and energy forecasting models across 30+ wind farms (Europe, Middle East, North Africa) for Yokogawa-integrated products
+  \item Deployed RAG for the \textbf{Italian Air Force Academy}, a security-sensitive context serving \kpi{$\sim$1,000 cadets/year}
+  \item Built agentic text-to-query pipelines over \textbf{SQL, Cypher, SPARQL and vector search} \tech{LangGraph}
+  \item Delivered anomaly detection and energy forecasting for \kpi{30+ wind farms} across Europe and MENA \tech{Yokogawa}
 \end{itemize}
 
-% ===========================================================================
-%  PROJECTS
 % ===========================================================================
 \section{Projects}
 
-\textbf{Guardian} | \textit{Hackathon Winner, NeoData Hackatania 2.0 (Nov 2024)} \\
-Multimodal AI assistant for law enforcement: 4-agent system with GraphRAG over a 28M-node Neo4j graph. Accepts image inputs (e.g.\ license plates) to correlate identities and assess risk in real time. Constructed with LangChain and LangGraph.
+\project{Guardian}{\award{Hackathon winner, NeoData Hackatania 2.0 (2024)}}
+{Multimodal AI assistant for law enforcement: \textbf{4-agent system} with \textbf{GraphRAG over a \kpi{28M-node} Neo4j graph}; correlates identities from image inputs (e.g.\ license plates) and assesses risk in real time \tech{LangChain, LangGraph}.}
 
-\vspace{2pt}
+\project{Neuro-Symbolic Text-to-Gloss}{\chip{cobalt}{Research, neuro-symbolic NLP}}
+{English-to-ASL gloss with Qwen2.5-0.5B, \textbf{Trie-constrained decoding} and \textbf{SFT\,$\rightarrow$\,GRPO}: \kpi{ROUGE-L 0.137\,$\rightarrow$\,0.974} vs zero-shot, \textbf{81\% exact match}, 100\% valid output (Trie-enforced); 15-cell ablation study.}
 
-\textbf{GRPO Strict JSON Generation} \\
-Adapted 5 LLMs (135M--2B params) via GRPO with RL-based reward system, LoRA, 4-bit NF4 quantization. Achieved 87--99\% Pass@1. Dockerized, cluster-ready (Slurm).
+\project{Warehouse Swarm Intelligence}{\chip{cobalt}{Research, multi-agent systems}}
+{Decentralized scout/coordinator/retriever swarm exploring unknown warehouses with limited communication: frontier exploration, A* replanning, atomic task claims. Real-time simulator \tech{FastAPI, Socket.IO, React}.}
 
-\vspace{2pt}
-
-\textbf{Videogame Semantic Search} \\
-Natural language-to-SPARQL translation via LLM over OWL\,2 ontology for structured knowledge graph querying.
+\project{PitWall AI}{\chip{muted}{Personal project}}
+{Fully local AI F1 race engineer: real Grands Prix replayed through \textbf{Apache Kafka and Spark Structured Streaming} for race strategy; a local LLM \tech{Ollama} commentates and answers via \textbf{tool calling}. Dockerized microservices.}
 
 % ===========================================================================
-%  EDUCATION
+\section{Technical Skills}
+\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\textwidth}{@{} >{\bfseries}l @{\hspace{10pt}} X @{}}
+Languages        & Python, C, C++, SQL, Cypher, SPARQL, Bash, JavaScript, TypeScript \\
+LLM \& Agents    & LangChain, LangGraph, LangSmith, HuggingFace, vLLM, Ollama, tool calling, multi-agent systems \\
+RAG \& Search    & GraphRAG, ChromaDB, Weaviate, FAISS, vector search, semantic search, reranking \\
+Fine-tuning      & SFT, GRPO/RL, LoRA/QLoRA, Unsloth, constrained decoding, distillation, domain adaptation \\
+ML               & PyTorch, TensorFlow, scikit-learn, Pandas, Weights \& Biases, anomaly detection, forecasting \\
+Data             & Neo4j, PostgreSQL, MySQL, Redis, SQLite, Apache Kafka, Apache Spark \\
+APIs \& Web      & FastAPI, Flask, REST API design, SDK integration, Socket.IO, React \\
+DevOps \& Cloud  & Docker, GitHub Actions, CI/CD, Slurm (HPC), multi-GPU clusters (H100), AWS, Vercel, Render \\
+\end{tabularx}
+\renewcommand{\arraystretch}{1.0}
+
 % ===========================================================================
 \section{Education}
 
-\textbf{M.Sc.\ Machine Learning and Artificial Intelligence} \hfill 2025 -- Present \\
-Universit\`{a} degli Studi di Catania
+\textbf{M.Sc.\ Machine Learning and Artificial Intelligence} {\color{muted}at Universit\`{a} degli Studi di Catania} \hfill {\color{muted}2025 -- 2027 (expected)} \\[3pt]
+\textbf{B.Sc.\ Computer Science, \kpi{110/110 cum laude}} {\color{muted}at Universit\`{a} degli Studi di Catania} \hfill {\color{muted}2021 -- 2024}
 
-\vspace{3pt}
-
-\textbf{B.Sc.\ Computer Science}, 110/110 cum Laude \hfill 2021 -- 2024 \\
-Universit\`{a} degli Studi di Catania \;\textbar\; Specialization in Data Elaboration and Applications
-
-% ===========================================================================
-%  CERTIFICATIONS
 % ===========================================================================
 \section{Certifications}
-\small
-\textbf{LangChain:} Deep Agents, Deep Research, Ambient Agents, Introduction to LangGraph, LangSmith (2025) \\
+\textbf{LangChain:} Deep Agents, Deep Research, Ambient Agents, Introduction to LangGraph, LangSmith (2025) \\[2pt]
 \textbf{Anthropic:} Claude Code in Action, MCP Advanced Topics, Introduction to MCP (2025)
 
 \end{document}
